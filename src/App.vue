@@ -1,6 +1,7 @@
 /* eslint-disable quotes */
 <template>
   <div class="container">
+    <global-header :user="user"></global-header>
     <column-list :list="list"></column-list>
   </div>
 </template>
@@ -8,6 +9,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import ColumnList, { ColumnProps } from "./components/ColumnList.vue";
+import GlobalHeader, { UserProps } from "./components/GlobalHeader.vue"
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const testData: ColumnProps[] = [
@@ -38,15 +40,20 @@ const testData: ColumnProps[] = [
     description: "文章内容文章内容文章文章内容文章内容文章文章内容文章内容文章2"
   }
 ];
-
+const user: UserProps = {
+  isLogin: true,
+  name: "张三"
+}
 export default defineComponent({
   name: "App",
   components: {
-    ColumnList
+    ColumnList,
+    GlobalHeader
   },
   setup() {
     return {
-      list: testData
+      list: testData,
+      user
     };
   }
 });
