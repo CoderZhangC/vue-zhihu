@@ -1,27 +1,55 @@
+/* eslint-disable quotes */
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="container">
+    <column-list :list="list"></column-list>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import { defineComponent } from "vue";
+import ColumnList, { ColumnProps } from "./components/ColumnList.vue";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+const testData: ColumnProps[] = [
+  {
+    id: 1,
+    avatar:
+      "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+    title: "文章标题1",
+    description: "文章内容文章内容文章文章内容文章内容文章文章内容文章内容文章1"
+  },
+  {
+    id: 2,
+    avatar:
+      "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+    title: "文章标题2",
+    description: "文章内容文章内容文章文章内容文章内容文章文章内容文章内容文章2"
+  },
+  {
+    id: 1,
+    avatar:
+      "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+    title: "文章标题1",
+    description: "文章内容文章内容文章文章内容文章内容文章文章内容文章内容文章1"
+  },
+  {
+    id: 2,
+    title: "文章标题2",
+    description: "文章内容文章内容文章文章内容文章内容文章文章内容文章内容文章2"
+  }
+];
 
 export default defineComponent({
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    ColumnList
+  },
+  setup() {
+    return {
+      list: testData
+    };
   }
-})
+});
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
