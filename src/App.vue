@@ -18,16 +18,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, reactive, ref } from "vue";
 // import ColumnList, { ColumnProps } from "./components/ColumnList.vue";
-import GlobalHeader, { UserProps } from "./components/GlobalHeader.vue";
+import GlobalHeader from "./components/GlobalHeader.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ValidateForm from "./components/ValidateForm.vue";
-
-const user: UserProps = {
-  isLogin: true,
-  name: "张三"
-};
+import { useStore } from "vuex";
+import { GlobalDataProps } from "./model/type";
 
 export default defineComponent({
   name: "App",
@@ -35,12 +31,14 @@ export default defineComponent({
     GlobalHeader
   },
   setup() {
-    const emailRef = ref("zhang@135.com");
     const onSubmit = (result: string) => {
       console.log("接受结果", result);
     };
+    const store = useStore<GlobalDataProps>();
+    // const currentUser = reactive(store.state.user);
+    const currentUser = computed(() => store.state.user);
     return {
-      user,
+      user: currentUser,
       onSubmit
     };
   }
